@@ -1,25 +1,25 @@
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    private float moveSpeed = 5f;
     private Rigidbody2D rb;
-    private UnityEngine.Vector2 moveInput;
-       void Start()
+    private Vector2 moveInput;
+
+
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    [System.Obsolete]
     void Update()
     {
-        rb.velocity = moveInput * moveSpeed;
+        rb.linearVelocity = moveSpeed * moveInput;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<UnityEngine.Vector2>();
+        moveInput = context.ReadValue<Vector2>();
     }
 }
