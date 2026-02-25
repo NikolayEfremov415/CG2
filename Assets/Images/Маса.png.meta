@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: def40d967d3930f4889ae4175db5ebf1
-      internalID: -1060554717
+      spriteID: e69fcd14d2e103e46b5971595a4428e1
+      internalID: -281549680
       vertices: []
       indices: 
       edges: []
@@ -159,8 +159,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9897ba1afcfb86648b8a3a4dbe39c278
-      internalID: 239441065
+      spriteID: e172393a1233c0f4ba8f2d66e6cdf2cf
+      internalID: 31155326
       vertices: []
       indices: 
       edges: []
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbcb2088d46f28849b908f331315ee0a
-      internalID: 221992614
+      spriteID: 8e22335d34159a84ea30d273f4e07e76
+      internalID: -1039603358
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d938ae10b93a664ea93a3597ef01fe7
-      internalID: 1379987060
+      spriteID: dd19cef8f431fe94fbdfbd8b3063650c
+      internalID: 1503509838
       vertices: []
       indices: 
       edges: []
@@ -225,8 +225,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52c2e4148584e9a4aace19f8fa8083f9
-      internalID: 1481454252
+      spriteID: 0a9340abc688a23409fce1e63dc3e9ba
+      internalID: -1112320497
       vertices: []
       indices: 
       edges: []
@@ -247,8 +247,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4410e46c45659864589ce21b875cc0dd
-      internalID: 43463705
+      spriteID: 8828d5aa80fc25b44910a7b9747c6652
+      internalID: -1555954141
       vertices: []
       indices: 
       edges: []
@@ -269,8 +269,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d04a7e4f05eee0458cfe5e5492fe1cd
-      internalID: 715795244
+      spriteID: e6930530ffc36024db9bbdafd89d57d4
+      internalID: 1080064197
       vertices: []
       indices: 
       edges: []
@@ -291,8 +291,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 333a4a2c61c5ced45885d83c4dbf76aa
-      internalID: -967208772
+      spriteID: 33abb0d8636d60645bec92cd7c25be6a
+      internalID: -232920705
       vertices: []
       indices: 
       edges: []
@@ -301,7 +301,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f9279a4a77c917f49ada5c63a1f601a4
+    spriteID: 773fd13e05a4c6c4698738e869730bb3
     internalID: 0
     vertices: []
     indices: 
@@ -314,14 +314,14 @@ TextureImporter:
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       "\u041C\u0430\u0441\u0430_0": -8864683707414069166
-      "\u041C\u0430\u0441\u0430_1": -1060554717
-      "\u041C\u0430\u0441\u0430_2": 239441065
-      "\u041C\u0430\u0441\u0430_3": 221992614
-      "\u041C\u0430\u0441\u0430_4": 1379987060
-      "\u041C\u0430\u0441\u0430_5": 1481454252
-      "\u041C\u0430\u0441\u0430_6": 43463705
-      "\u041C\u0430\u0441\u0430_7": 715795244
-      "\u041C\u0430\u0441\u0430_8": -967208772
+      "\u041C\u0430\u0441\u0430_1": -281549680
+      "\u041C\u0430\u0441\u0430_2": 31155326
+      "\u041C\u0430\u0441\u0430_3": -1039603358
+      "\u041C\u0430\u0441\u0430_4": 1503509838
+      "\u041C\u0430\u0441\u0430_5": -1112320497
+      "\u041C\u0430\u0441\u0430_6": -1555954141
+      "\u041C\u0430\u0441\u0430_7": 1080064197
+      "\u041C\u0430\u0441\u0430_8": -232920705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
