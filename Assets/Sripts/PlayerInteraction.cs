@@ -16,19 +16,23 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public void Interact(InputAction.CallbackContext context)
+{
+    if (!context.performed) return;
+
+    Debug.Log("E pressed");
+
+    RaycastHit2D hit = Physics2D.Raycast(transform.position, lastMoveDirection, interactRange);
+
+    if (hit.collider != null)
     {
-        if (!context.performed) return;
+        Debug.Log("Hit: " + hit.collider.name);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, lastMoveDirection, interactRange);
+        IInteractable interactable = hit.collider.GetComponent<IInteractable>();
 
-        if (hit.collider != null)
+        if (interactable != null)
         {
-            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-
-            if (interactable != null)
-            {
-                interactable.Interact();
-            }
+            interactable.Interact();
         }
     }
+}
 }
