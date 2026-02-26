@@ -14,6 +14,10 @@ public class Volume : MonoBehaviour
             PlayerPrefs.SetFloat("Volume", 1); // Set default volume to 1 if not already set
             Load(); // Load the saved volume setting 
         }
+       else
+        {
+            Load();
+        }
     }
 
     // Update is called once per frame
