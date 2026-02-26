@@ -50,6 +50,9 @@ TagManager:
   - name: Collision
     uniqueID: 4040408087
     locked: 0
+  - name: Portal
+    uniqueID: 3437235779
+    locked: 0
   - name: Player
     uniqueID: 4018608093
     locked: 0
