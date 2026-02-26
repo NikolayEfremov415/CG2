@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         rb.linearVelocity = moveSpeed * moveInput;
     }
