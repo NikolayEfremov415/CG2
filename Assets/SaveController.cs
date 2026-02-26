@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 using Unity.Cinemachine; // Modern Cinemachine namespace
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class SaveData
@@ -63,6 +64,7 @@ public class SaveController : MonoBehaviour
 
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData, true));
         // Debug.Log("Saved to: " + saveLocation);
+        SceneManager.LoadScene(0);
     }
 
     public void LoadGame()
