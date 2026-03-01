@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a278692c88fe9408e6fc47db4461f9, type: 3}
   m_Name: Ball
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
+  itemName: Ball
+  icon: {fileID: 21300000, guid: 4eedc43d4e18c024abb08afab2cf0247, type: 3}
