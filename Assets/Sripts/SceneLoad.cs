@@ -9,7 +9,16 @@ public class SceneTeleport : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.LoadScene(sceneToLoad);
         }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector3(0f, 0f, 0f);
+
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
