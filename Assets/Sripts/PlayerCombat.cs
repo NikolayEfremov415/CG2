@@ -2,71 +2,49 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public float attackRange = 0.8f;
-    public float attackOffset = 0.8f;
+    [Header("Attack Settings")]
+    public Transform attackPoint;     // празен обект пред играча
+    public float attackRange = 0.5f;  // радиус на удара
     public int damage = 1;
+    public float attackCooldown = 0.5f;
 
-    public LayerMask hitLayers;
-
-    private PlayerMovement movementScript;
-
-    void Start()
-    {
-        movementScript = GetComponent<PlayerMovement>();
-    }
+    private float nextAttackTime = 0f;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Time.time >= nextAttackTime)
         {
-            Attack();
+            if (Input.GetKeyDown(KeyCode.Space)) // бутон за атака
+            {
+                Attack();
+                nextAttackTime = Time.time + attackCooldown;
+            }
         }
     }
 
     void Attack()
     {
-        // Взимаме последната посока от movement script-а
-        Vector2 direction = movementScript.lastDirection.normalized;
+        // намира всички обекти в радиуса
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
 
-        // Изчисляваме позицията пред играча
-        Vector2 attackPosition =
-            (Vector2)transform.position + direction * attackOffset;
-
-        // Проверяваме какво има в тази зона
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            attackPosition,
-            attackRange,
-            hitLayers
-        );
-
-        foreach (Collider2D hit in hits)
+        foreach (Collider2D obj in hitObjects)
         {
-            if (hit.CompareTag("Enemy"))
-            {
-                hit.GetComponent<Enemy>().TakeDamage(damage);
-            }
+            SimpleDestructible destructible = obj.GetComponent<SimpleDestructible>();
 
-            if (hit.CompareTag("Trash"))
+            if (destructible != null)
             {
-                Destroy(hit.gameObject);
+                destructible.TakeDamage(damage);
             }
         }
     }
 
-    // Само за визуализация в Scene view
+    // показва радиуса в Scene view
     void OnDrawGizmosSelected()
     {
-        if (movementScript == null)
-            movementScript = GetComponent<PlayerMovement>();
-
-        if (movementScript == null) return;
+        if (attackPoint == null)
+            return;
 
         Gizmos.color = Color.red;
-
-        Vector2 attackPosition =
-            (Vector2)transform.position +
-            movementScript.lastDirection.normalized * attackOffset;
-
-        Gizmos.DrawWireSphere(attackPosition, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

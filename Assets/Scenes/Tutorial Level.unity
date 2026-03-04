@@ -41996,6 +41996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 4
+  lastDirection: {x: 0, y: -1}
 --- !u!50 &2075150597
 Rigidbody2D:
   serializedVersion: 5
