@@ -7,9 +7,6 @@ public class Inventory1 : MonoBehaviour
 
     public void Add(ItemData item)
     {
-        if (item == null) return;
-        items.Add(item);
-        Debug.Log("Picked up: " + item.itemName);
         if (item == null)
         {
             Debug.LogError("Add() получи NULL item! Провери ItemPickup.item в Inspector.");
@@ -19,5 +16,16 @@ public class Inventory1 : MonoBehaviour
         items.Add(item);
         Debug.Log($"Added: {item.itemName} | Count: {items.Count}");
     }
-    
+    public bool Has(ItemData item)
+    {
+        return item != null && items.Contains(item);
+    }
+
+    public bool Remove(ItemData item)
+    {
+        if (item == null) return false;
+        bool removed = items.Remove(item);
+        if (removed) Debug.Log($"Removed: {item.itemName} | Count: {items.Count}");
+        return removed;
+    }
 }
