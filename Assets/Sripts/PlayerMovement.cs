@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
 
     private Rigidbody2D rb;
-    private Vector2 moveInput;
+    public Vector2 moveInput;
     private Animator animator;
 
     // Запомня последната посока

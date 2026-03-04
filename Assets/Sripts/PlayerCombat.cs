@@ -2,48 +2,85 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [Header("Attack Settings")]
-    public Transform attackPoint;     // празен обект пред играча
-    public float attackRange = 0.5f;  // радиус на удара
-    public int damage = 1;
-    public float attackCooldown = 0.5f;
+    [Header("Настройки на атаката")]
+    public Transform attackPoint;      // Обектът, от който тръгва удара
+    public float attackRange = 0.5f;   // Радиус на удара
+    public float attackOffset = 0.7f;  // Разстояние пред играча
+    public LayerMask hitLayers;        // Слой "Interactable" (Enemy и Trash)
 
-    private float nextAttackTime = 0f;
+    [Header("Статистика")]
+    public int damage = 1;
+
+    private PlayerMovement moveScript;
+
+    void Start()
+    {
+        moveScript = GetComponent<PlayerMovement>();
+
+        // Автоматично намиране на AttackPoint, ако не е зададен в Inspector-а
+        if (attackPoint == null)
+        {
+            attackPoint = transform.Find("AttackPoint");
+            
+            if (attackPoint == null)
+            {
+                Debug.LogError("Грешка: Не намерих обект с име 'AttackPoint' като дете на Player!");
+            }
+        }
+    }
 
     void Update()
     {
-        if (Time.time >= nextAttackTime)
+        // Обновяваме позицията на AttackPoint спрямо посоката на гледане
+        UpdateAttackPointPosition();
+
+        // Атака при натискане на Space
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space)) // бутон за атака
-            {
-                Attack();
-                nextAttackTime = Time.time + attackCooldown;
-            }
+            Attack();
+        }
+    }
+
+    void UpdateAttackPointPosition()
+    {
+        if (attackPoint != null && moveScript != null)
+        {
+            // Поставяме точката на атака пред играча спрямо lastDirection
+            attackPoint.localPosition = moveScript.lastDirection * attackOffset;
         }
     }
 
     void Attack()
     {
-        // намира всички обекти в радиуса
-        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+        // Проверка за обекти в обсега (OverlapCircle)
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, hitLayers);
 
-        foreach (Collider2D obj in hitObjects)
+        foreach (Collider2D hit in hitObjects)
         {
-            SimpleDestructible destructible = obj.GetComponent<SimpleDestructible>();
-
-            if (destructible != null)
+            // Логика за Врагове
+            if (hit.CompareTag("Enemy"))
             {
-                destructible.TakeDamage(damage);
+                Enemy enemy = hit.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                    Debug.Log("Удари враг!");
+                }
+            }
+
+            // Логика за Боклук
+            if (hit.CompareTag("Trash"))
+            {
+                Destroy(hit.gameObject);
+                Debug.Log("Изчисти боклук!");
             }
         }
     }
 
-    // показва радиуса в Scene view
+    // Визуализация в редактора (червен кръг)
     void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-            return;
-
+        if (attackPoint == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
