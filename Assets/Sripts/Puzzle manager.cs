@@ -3,46 +3,48 @@ using TMPro;
 
 public class PuzzleManager : MonoBehaviour
 {
-    public TextMeshProUGUI timerText; // Плъзни текстовия обект тук
+    public TextMeshProUGUI timerText;
     
     private float startTime;
     private bool isTimerRunning = false;
-    private bool hasFinishedOnce = false; 
     private int returnCount = 0;
+    private bool firstChoiceMade = false; // Следи дали изобщо е правен избор досега
 
     void Start()
     {
-        if (timerText != null) timerText.text = ""; // Изчиства "New Text" в началото
+        if (timerText != null) timerText.text = "";
     }
 
     public void StartPuzzle()
     {
-        // Ако вече сме минали през избор и се върнем на старта, броим го за връщане
-        if (hasFinishedOnce)
-        {
-            returnCount++;
-        }
-
+        // Стартът просто започва таймера чисто
         startTime = Time.time;
         isTimerRunning = true;
-        hasFinishedOnce = false; 
         
         UpdateUI(0);
-        Debug.Log("Таймерът стартира! Връщания: " + returnCount);
+        Debug.Log("Таймерът стартира!");
     }
 
     public void RegisterChoiceAndFinish()
     {
+        // АКО ТАЙМЕРЪТ РАБОТИ: Това е нормално завършване на пъзела
         if (isTimerRunning)
         {
             isTimerRunning = false;
-            hasFinishedOnce = true; 
+            firstChoiceMade = true;
             
             float finalTime = Time.time - startTime;
-            if (timerText != null)
-            {
-                timerText.text = string.Format("Избор направен!\nВреме: {0:0.00}с\nВръщания: {1}", finalTime, returnCount);
-            }
+            Debug.Log("Първи избор направен! Време: " + finalTime);
+            UpdateUI(finalTime);
+        }
+        // АКО ТАЙМЕРЪТ НЕ РАБОТИ, НО ВЕЧЕ СМЕ ПРАВИЛИ ИЗБОР: Това е промяна на избора (връщане)
+        else if (firstChoiceMade)
+        {
+            returnCount++; // Увеличаваме само тук
+            Debug.Log("Промяна на избора! Общо връщания: " + returnCount);
+            
+            // Автоматично рестартираме таймера за новия опит
+            StartPuzzle();
         }
     }
 
